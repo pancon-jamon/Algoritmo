@@ -57,8 +57,8 @@ while condicion:
                     break
 
             idActual += 1
-            equiposRegistrados.append(equipo_A_Registrar)
-            equiposRegistrados.append(idActual)
+            equipo = [idActual, equipo_A_Registrar]
+            equiposRegistrados.append(equipo)
 
             print("Equipo registrado correctamente")
 #######################         Claudia Coello          ##################
@@ -66,42 +66,41 @@ while condicion:
             print("Selecciono opcion 2")
             print("Lista de equipos registrados")
             
-            for contador in range(0, len(equiposRegistrados), 2):
-                print(f"{equiposRegistrados[contador + 1]}. {equiposRegistrados[contador]} ")
+            for equipo in equiposRegistrados:
+                print(f"{equipo[0]}. {equipo[1]} ")
 #######################         Claudia Coello          ##################
         case 3:
             print("Selecciono opcion 3")
             print("Actualizar equipo")
 
-            for contador in range(0, len(equiposRegistrados), 2):
-                print(f"{equiposRegistrados[contador + 1]}. {equiposRegistrados[contador]} ")
+            encontrado = True
 
-            while True:
-                idActualizar = int(input("Ingrese el id del equipo a actualizar: "))
+            idActualizar = int(input("Ingrese el id del equipo a actualizar: "))
 
-                if idActualizar in equiposRegistrados:
+            for equipo in equiposRegistrados:  
+                if equipo[0] == idActualizar:
                     actualizarNombre = input("Ingrese el nuevo nombre: ")
-                    equiposRegistrados[idActualizar] = actualizarNombre
-                    break
-                else:
-                    print("Id invalido")
+                    equipo[1] = actualizarNombre
 
+                if not encontrado:
+                    print("Id invalido")
                 
 #######################         Claudia Coello          ##################        
         case 4:
             print("Selecciono opcion 4")
             print("Eliminar equipo")
 
-            for contador in range(0, len(equiposRegistrados), 2):
-                print(f"{equiposRegistrados[contador + 1]}. {equiposRegistrados[contador]} ")
+            idEliminar = int(input("ID a eliminar: "))
+            encontrado = False
+            for i in range(len(equiposRegistrados)):
+                if equiposRegistrados[i][0] == idEliminar:
+                    del equiposRegistrados[i]
+                    encontrado = True
+                    print("Equipo eliminado.")
+                    break
 
-            while True:
-                idEliminar = input("Ingrese el id del equipo: ")
-                if(idEliminar in equiposRegistrados):
-                    
-                    equiposRegistrados[idEliminar].remove
-                    equiposRegistrados[idEliminar + 1].remove
-                break
+                if not encontrado:
+                    print("ID no encontrado.")
 #######################         Claudia Coello          ##################
         case 5:
             print("Selecciono opcion 5")
@@ -113,7 +112,7 @@ while condicion:
                 if(equipoBuscar in equiposRegistrados):
                     for contador in range(0, len(equiposRegistrados), 2):
                         if(equiposRegistrados[contador] == equipoBuscar):
-                            print(f"{equiposRegistrados[contador + 1]}. {equiposRegistrados[contador]} ")
+                            print(f"{equiposRegistrados[contador]}. {equiposRegistrados[contador - 1]} ")
                     break
                 else:
                     print("El equipo no esta registrado")
