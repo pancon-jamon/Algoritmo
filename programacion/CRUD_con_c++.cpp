@@ -81,6 +81,8 @@ int main(){
 	}else{
 		cout<<"Elemento no encontrado"<<endl;
 	}
-	
+	cout<<endl<<"Limpiar el vector";
+	numeros.clear();
+	mostrarVector(numeros, "Despues de clear");
 	return 0;
 }
