@@ -83,5 +83,69 @@
 #         numMenor = numeros[i]
 # print("El mayor es: ", numMayor)
 # print("El menor es: ", numMenor)
-#15.	Crea una tupla con los meses del año, pide números al usuario, si el numero esta entre 1 y la longitud máxima de la tupla, muestra el contenido de esa posición sino muestra un mensaje de error.
-#El programa termina cuando el usuario introduce un cero.
+# #15.	Crea una tupla con los meses del año, pide números al usuario, si el numero esta entre 1 y la 
+# # longitud máxima de la tupla, muestra el contenido de esa posición sino muestra un mensaje de error.
+# #El programa termina cuando el usuario introduce un cero.
+# print("Claudia Coello")
+# meses_del_year = ('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre','Octubre', 'Noviembre', 'Diciembre')
+# def mostrarMeses():
+#     numero = 0
+#     numeroMeses = len(meses_del_year)
+#     while True:
+#         try:
+#             numero = int(input(f"Ingrese un numero entre 1 y {numeroMeses} o 0 para salir: "))
+
+#             if numero > len(meses_del_year) or numero < 0:
+#                 raise ValueError (f"Error ingrese un numero entre 1 y {numeroMeses} o 0 para salir: ")
+            
+#             if numero == 0:
+#                 break
+
+#             print("Mes: ",meses_del_year[numero - 1])
+            
+#         except Exception as e:
+#             print("Error:", e)
+        
+
+# mostrarMeses()
+# # 16. Crea una función que reciba una tupla de números y devuelva la suma de todos sus elementos.
+# print("Claudia Coello")
+# tupla = (1,2,3,4,5)
+
+# def sumaElementosTupla(tupla):
+#     suma = 0
+#     for i in tupla:
+#         suma += i
+
+#     return suma
+
+# print(tupla)
+# print(f"La suma de sus elementos es: {sumaElementosTupla(tupla)}")
+
+
+# 17. Crea una función que reciba una tupla de números y devuelva una nueva tupla con el valor 
+# mínimo y máximo.
+# print("Claudia Coello")
+# tupla = (10,1,20,13,4,5)
+
+# def minMaxTupla(tupla):
+#     tuplaMinMax = (min(tupla), max(tupla))
+
+#     return tuplaMinMax
+
+# tuplaMinMax = minMaxTupla(tupla)
+# print(tuplaMinMax)
+
+# 18. Crea una función que reciba una tupla y un valor, y retorne cuántas veces aparece ese valor en la tupla.
+
+def aparicionesEnTupla(tupla, numero):
+    contador = 0
+    for i in tupla:
+        if i == numero:
+            contador += 1
+    return contador
+
+tupla = (1,1,2,5,8,5,8)
+numeroApariciones = aparicionesEnTupla(tupla, int(input("Ingrese un numero para contar la cntidad de veces que aparece: ")))
+print(tupla)
+print(f"El numero de apariciones en la tupla es: {numeroApariciones}")
