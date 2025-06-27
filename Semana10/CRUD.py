@@ -8,6 +8,7 @@ Realiza lo siguiente:
 -	Crear una función que muestre el menú
 """
 notas = {}
+
 def agregarNota(notas,titulo,contenido):
     notas[titulo] = contenido
 
@@ -15,7 +16,7 @@ def verNotas():
     if not notas:
         print("No existe ninguna nota")
     else:
-        for titulo, contenido in notas.items:
+        for titulo, contenido in notas.items():
             print(titulo, ":", contenido)
 
 def editarNota(notas, titulo, nuevoContenido):
@@ -41,14 +42,24 @@ while True:
     opcion = int(input("Ingrese la opcion que desea hacer: "))
     match opcion:
         case 1:
-            titulo = input("Ingrese la asignatura")
-            contenido = float(input("Ingrese la nota"))
+            titulo = input("Ingrese la asignatura: ")
+            contenido = float(input("Ingrese la nota: "))
             agregarNota(notas, titulo, contenido)
             print("La nota se ha agregado correctamente")
         case 2:
-        
+            print("Notas ingresadas: ")
+            verNotas()
         case 3:
-        
+            titulo = input("Ingrese la asignatura: ")
+            contenido = float(input("Ingrese la nota: "))
+            editarNota(notas, titulo, contenido)
+            print("La nota se ha actualizado correctamente")
         case 4:
-
+            titulo = input("Ingrese la asignatura: ")
+            eliminarNota(notas, titulo)
+            print("La nota se ha eliminado correctamente: ")
         case 5:
+            print("Saliendo...")
+            break
+
+print("Gracias por usar nuestros servicios")
