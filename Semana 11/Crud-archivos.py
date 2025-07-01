@@ -12,12 +12,12 @@ def cargarPersonas():
     if not os.path.exists("personas.txt"):
         return []
     with open("personas.txt","r") as archivo:
-        return [linea.strip() for linea in archivo.readlines()]
+        return [linea.strip().split(",") for linea in archivo.readlines()]
     
 def guardarPersonas():
     with open("personas.txt","w") as archivo:
         for persona in personas:
-            archivo.write(persona + "\n")
+            archivo.write(f"{persona[0]},{persona[1]}\n")
     print("Se ha guardado las personas en el archivo")
 
 
@@ -41,7 +41,7 @@ def actualizarPersona(personas):
     listarPersonas(personas)
     try:
         indice = int(input("Ingrese el ID: "))
-        if 0 <= indice > len(personas):
+        if 0 <= indice < len(personas):
             nombre = input("Ingrese el nuevo nombre: ")
             edad = int(input("Ingrese la nueva edad: "))
             personas[indice] = f"{nombre}", f"{edad}"
@@ -71,6 +71,7 @@ def menu():
     print("3. Actualizar por índice")
     print("4. Eliminar por índice")
     print("5. Guardar en archivo personas.txt")
+    print("6. Salir")
 
     while True:
         try:
@@ -80,6 +81,19 @@ def menu():
                 match opcion:
                     case 1:
                         print("Elijio la opcion 1: Crear personas")
+                        crearPersonas()
+                    case 2:
+                        print("Elijio la opcion 2: Leer o listar todas")
+                        listarPersonas(personas)
+                    case 3:
+                        print("Elijio la opcion 3: Actualizar por índice")
+                        actualizarPersona(personas)
+                    case 4:
+                        print("Elijio la opcion 4: Eliminar por índice")
+                        eliminarPersona(personas)
+                    case 5:
+                        print("Elijio la opcion 5:  Guardar en archivo personas.txt")
+                        cargarPersonas()
                     case 6:
                         print("Saliendo...")
                         break
