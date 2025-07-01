@@ -73,8 +73,21 @@ def menu():
     print("5. Guardar en archivo personas.txt")
 
     while True:
-        opcion = int(input("Ingrese su opcion: "))
-        if  0 < opcion < 6:
-            break 
+        try:
+            opcion = int(input("Ingrese su opcion(entre 1 y 6): "))
+            if  0 < opcion < 7:
+                
+                match opcion:
+                    case 1:
+                        print("Elijio la opcion 1: Crear personas")
+                    case 6:
+                        print("Saliendo...")
+                        break
+                    case _:
+                        print("Opcion no valida")
+        except ValueError:
+            print('Ingrese un numero')
+
+     
 
 menu()
