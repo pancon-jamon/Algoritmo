@@ -7,61 +7,60 @@
 import os
 
 personas = []
+ruta = "Semana11/Archivos/personas.txt"
 
 def cargarPersonas():
-    if not os.path.exists("personas.txt"):
-        return []
-    with open("personas.txt","r") as archivo:
-        return [linea.strip().split(",") for linea in archivo.readlines()]
+    global personas
+    if not os.path.exists(ruta):
+        personas = []
+        return
+    with open(ruta,"r") as archivo:
+        personas = [linea.strip().split(",") for linea in archivo.readlines()]
     
 def guardarPersonas():
-    with open("personas.txt","w") as archivo:
+    with open(ruta,"w") as archivo:
         for persona in personas:
             archivo.write(f"{persona[0]},{persona[1]}\n")
     print("Se ha guardado las personas en el archivo")
 
-
 def crearPersonas():
     nombre = input("Ingrese el nombre: ")
-    edad = int(input("Ingrese la edad: "))
-    persona = f"{nombre}", f"{edad}"#es una dupla
-    personas.append(persona)
-
+    edad = input("Ingrese la edad: ") 
+    personas.append([nombre, edad])
     print("La persona se ha creado exitosamente")
 
-def listarPersonas(personas):
+def listarPersonas():
     if not personas:
         print("No hay personas registradas")
     else:
         for i, p in enumerate(personas):
-            nombre, edad = p.split(",")
-            print(i + 1, " ", nombre, "-", edad)
+            print(f"{i + 1}. {p[0]} - {p[1]}")
 
-def actualizarPersona(personas):
-    listarPersonas(personas)
+def actualizarPersona():
+    listarPersonas()
     try:
-        indice = int(input("Ingrese el ID: "))
+        indice = int(input("Ingrese el ID: ")) - 1
         if 0 <= indice < len(personas):
             nombre = input("Ingrese el nuevo nombre: ")
-            edad = int(input("Ingrese la nueva edad: "))
-            personas[indice] = f"{nombre}", f"{edad}"
+            edad = input("Ingrese la nueva edad: ")
+            personas[indice] = [nombre, edad]
             print("La persona se ha actualizado correctamente")
         else:
-            print("El indice no es valido")
+            print("El índice no es válido")
     except ValueError:
-        print("Entrada no valida")
+        print("Entrada no válida")
 
-def eliminarPersona(personas):
-    listarPersonas(personas)
+def eliminarPersona():
+    listarPersonas()
     try:
-        indice = int(input("Ingrese el ID de la persona a eliminar: "))
-        if 0 <= indice > len(personas):
+        indice = int(input("Ingrese el ID de la persona a eliminar: ")) - 1
+        if 0 <= indice < len(personas):
             personas.pop(indice)
             print("La persona se ha eliminado correctamente")
         else:
-            print("El indice no es valido")
+            print("El índice no es válido")
     except ValueError:
-        print("Entrada no valida")
+        print("Entrada no válida")
 
 
 def menu():
@@ -84,13 +83,13 @@ def menu():
                         crearPersonas()
                     case 2:
                         print("Elijio la opcion 2: Leer o listar todas")
-                        listarPersonas(personas)
+                        listarPersonas()
                     case 3:
                         print("Elijio la opcion 3: Actualizar por índice")
-                        actualizarPersona(personas)
+                        actualizarPersona()
                     case 4:
                         print("Elijio la opcion 4: Eliminar por índice")
-                        eliminarPersona(personas)
+                        eliminarPersona()
                     case 5:
                         print("Elijio la opcion 5:  Guardar en archivo personas.txt")
                         cargarPersonas()
